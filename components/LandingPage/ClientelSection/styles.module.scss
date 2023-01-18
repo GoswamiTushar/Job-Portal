@@ -1,0 +1,33 @@
+@import '../../../styles/index.scss';
+
+.clients{
+    display: grid;
+    gap: 1rem;
+
+    .heading {
+        color: $color02;
+        font-weight: 200;
+
+        h2{
+            font-size: 1.1rem;
+            // font-size: 18px;
+        }
+    }
+
+    .company-logos{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        gap: 2rem;
+        object-fit: cover;
+
+        img{
+            @include mobile{
+                width: 21vw;
+                height: 2rem;
+            }
+        }
+    }
+}

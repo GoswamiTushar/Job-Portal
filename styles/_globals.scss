@@ -1,0 +1,60 @@
+@import './index.scss';
+@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@700&display=swap');
+
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url('../public/Fonts/helveticaneue/HelveticaNeue.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url('../public/Fonts/helveticaneue/Helvetica\ Neu\ Bold.ttf');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url('../public/Fonts/helveticaneue/HelveticaNeue\ Medium.ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url('../public/Fonts/helveticaneue/HelveticaNeue\ Thin.ttf');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url('../public/Fonts/helveticaneue/HelveticaNeue\ Light.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: $color01;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+.w_container {
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}

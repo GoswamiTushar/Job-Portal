@@ -1,0 +1,37 @@
+@import '../../styles/index.scss';
+
+.bg-formatted-landingpage {
+    height: 32rem;
+    top: -5rem;
+    width: 100%;
+    background: $color02;
+    position: absolute;
+    z-index: -10;
+
+    @include mobile {
+        height: 36rem;
+    }
+
+    @include tablet {
+        height: 25rem;
+    }
+}
+
+.bg-formatted-auth {
+    @extend .bg-formatted-landingpage;
+
+    height: 25rem;
+}
+
+.bg-formatted-dashboard {
+    @extend .bg-formatted-landingpage;
+    height: 42vh;
+
+    @include mobile {
+        height: 20rem;
+    }
+}
+
+.bg-formatted-post-job {
+    @extend .bg-formatted-auth;
+}

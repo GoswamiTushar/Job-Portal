@@ -1,0 +1,126 @@
+@import '../../../styles/index.scss';
+
+.greetings-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: flex-start;
+
+    @include tablet {
+        margin: 2rem 4rem;
+    }
+
+    @include l_tablet{
+        margin: 0
+    }
+    @include mobile{
+        justify-content: center;
+        align-items: center;
+    }
+
+    @include mobile {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .desc-container {
+        display: flex;
+        flex-direction: column;
+
+        @include mobile{
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            color: white;
+            font-weight: 400;
+            line-height: 6rem;
+
+            @include l_desktop{
+                line-height: 4.5rem;
+                font-size: 3rem;
+            }
+
+            @include l_tablet{
+                line-height: 2.5rem;
+                font-size: 2rem;
+            }
+
+            @include mobile {
+                text-align:start;
+                line-height: 4.5rem;
+                font-size: 3rem;
+            }
+
+
+            .logo {
+                font-weight: 700;
+
+                .colored {
+                    color: $color05;
+                }
+                .colored-light {
+                    color: $color04;
+                }
+            }
+        }
+
+        .btn-container {
+            margin: .8rem 0;
+
+            .get-started-btn{
+                text-decoration: none;
+                border: none;
+                background-color: $color05;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 7rem;
+                height: 2.5rem;
+                color: $color04;
+                border-radius: .25rem;
+                font-size: .8rem;
+            
+                &:hover {
+                    cursor: pointer;
+                    background-color: $color12;
+                }
+            
+                @include mobile {
+                    width: 5rem;
+                    height: 2rem;
+                    font-size: .6rem;
+                }
+            }
+
+            @include mobile {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
+        }
+    }
+
+    .image-container {
+        .img {
+            width: 38rem;
+            object-fit: cover;
+            box-shadow: 0px 30px 36px #557DA526;
+
+            @include l_desktop{
+                width: 34rem;
+            }
+
+            @include l_tablet{
+                width: 40vw;
+            }
+
+            @include mobile {
+                width: 80vw;
+            }
+        }
+    }
+}

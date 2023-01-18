@@ -1,0 +1,63 @@
+@import '../../styles/index.scss';
+
+.form-row{
+    margin-bottom: 1rem;
+    flex: 1;
+    position: relative;
+
+    .label {
+        display: block;
+        width: 100%;
+        font-size: .7rem;
+        color: $color03;
+        margin-bottom: .5rem;
+
+        @include mobile{
+            font-size: .6rem;
+        }
+    }
+
+    .input-field {
+        display: block;
+        width: 100%;
+        padding: .7rem;
+        border-radius: 0.3rem;
+        outline: none;
+        background: $color10;
+        font-size: .7rem;
+    
+        &:focus {
+            outline: none;
+            border: 1px solid $color05;
+        }
+
+        @include mobile{
+            font-size: .6rem;
+        }
+    }
+
+    .input-field-normal{
+        @extend .input-field;
+        border: 1px solid $color09;
+    }
+
+    .input-field-error{
+        @extend .input-field;
+        border: 1px solid $color11;
+    }
+    .error {
+        position: absolute;
+        bottom: -15px;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-weight: 500;
+        color: #ff0000;
+        font-size: .6rem;
+
+        @include mobile {
+            font-size: .5rem;
+        }
+    }
+}

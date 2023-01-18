@@ -1,0 +1,61 @@
+@import '../../styles/index.scss';
+
+.dashboard{
+    max-width: 1300px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1rem 9rem;
+
+    @include mobile{
+        padding: 1rem 2rem;
+    }
+
+    @include tablet{
+        padding: 1rem 5rem;
+    }
+
+    .page-title {
+        padding: 1rem 0;
+        font-size: 1.5rem;
+        color: $color04;
+
+        @include tablet {
+            font-size: 1.8rem;
+        }
+
+        @include mobile {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.no-data {
+    position: relative;
+
+    .wrapper {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        @include mobile {
+                top: 75;
+                transform: translate(-50%, -25%);
+            }
+
+        .icon {
+            width: 5rem;
+        }
+
+        .data-status {
+            color: #818895;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+@import '../../styles/index.scss';
+
+.breadcrumbs-container{
+    display: flex;
+    align-items: center;
+
+    .seperator{
+        color: $color04;
+        font-size: .45rem;
+        font-weight: 400;
+        margin: 0 .4rem; 
+    }
+
+    .breadcrumb-item{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 400;
+        font-size: .8rem;
+        color: $color04;
+        img{
+            margin-right: .3rem;
+            width: .8rem;
+            height: .8rem;
+        }
+        .label{
+            // margin: auto;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .breadcrumb-link{
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}

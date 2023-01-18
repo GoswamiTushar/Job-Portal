@@ -1,0 +1,52 @@
+@import '../../styles/index.scss';
+
+.not-selected{
+    background-color: $color10;
+    border: 1px solid $color09;
+    color: $color03;
+}
+
+.selected {
+    color: $color04;
+    background-color: $color05;
+    border: 1px solid $color05;
+}
+
+.option-btn{
+    margin-right: .3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    margin-bottom: 1rem;
+    border-radius: .2rem;
+    width: 7rem;
+    height: 2.5rem;
+
+    &:hover{
+        cursor: pointer;
+    }
+
+    @include mobile{
+        width: 5rem;
+        height: 1.8rem;
+    }
+
+    .icon-container{
+        .icon{
+            width: 1rem;
+
+            @include mobile{
+                width: .8rem;
+            }
+        }
+    }
+    .text {
+        font-weight: 400;
+        font-size: .7rem;
+
+        @include mobile{
+            font-size: .5rem;
+        }
+    }
+}

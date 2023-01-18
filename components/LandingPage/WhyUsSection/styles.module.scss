@@ -1,0 +1,21 @@
+@import '../../../styles//index.scss';
+
+.why-us {
+    margin-top: 3rem;
+    .heading {
+        color: $color02;
+        font-weight: 200;
+        h2 {
+            font-size: 1.1rem;
+            // font-size: 18px;
+        }
+    }
+
+    .cards-section{
+        margin: 2rem 0;
+        display: flex;
+        gap: 2rem;
+        align-self: stretch;
+        flex-wrap: wrap;
+    }
+}

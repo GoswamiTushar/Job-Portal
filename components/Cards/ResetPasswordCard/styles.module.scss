@@ -1,0 +1,58 @@
+@import '../../../styles/index.scss';
+
+.reset-password{
+    // position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 7%;
+        background-color: $color04;
+        border-radius: 1rem;
+        // top: 50%;
+        // left: 50%;
+        padding: 2rem 1rem;
+        // transform: translate(-50%, -50%);
+        box-shadow: 0px 30px 36px #557DA526;
+        width: 30rem;
+
+    @include tablet {
+        width: 30rem;
+    }
+
+    @include mobile {
+        width: 70vw;
+        margin-top: 15vh;
+    }
+
+    .title {
+        color: $color03;
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+    }
+
+    .instructions {
+        font-size: .8rem;
+        font-weight: 400;
+        margin-bottom: 1.5rem;
+    }
+
+    .auth-error {
+        position: relative;
+
+        .message {
+            position: absolute;
+            top: 3px;
+            right: 0;
+            color: red;
+            font-size: .6rem;
+            font-weight: 400;
+        }
+    }
+
+    .btn-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 1.2rem;
+    }
+}

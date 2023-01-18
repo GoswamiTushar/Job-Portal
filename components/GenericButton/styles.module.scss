@@ -1,0 +1,29 @@
+@import '../../styles/index.scss';
+
+.generic-btn{
+    border: none;
+    background-color: $color05;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 7rem;
+    height: 2.5rem;
+    color: $color04;
+    border-radius: .25rem;
+
+    &:hover{
+        cursor: pointer;
+        background-color: $color12;
+    }
+
+    @include mobile{
+        width: 5rem;
+        height: 2rem;
+        font-size: .6rem;
+    }
+}
+
+.disabled-generic-btn{
+    @extend .generic-btn;
+    background-color: $color16;
+}

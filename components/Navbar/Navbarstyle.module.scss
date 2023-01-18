@@ -1,0 +1,160 @@
+@import '../../styles/index.scss';
+
+.navbar-container{
+    max-width: 1350px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: .6rem 3.5rem;
+    background-color: $color02;
+    position: relative;
+
+    @include mobile{
+        padding: .8rem 2rem;
+    }
+
+    .navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $color07;
+    padding: .5rem 0;
+
+        .page-title {
+            font-size: 1.2rem;
+            font-family: 'Arimo', sans-serif;
+            font-weight: 700;
+
+            &:hover{
+                cursor: pointer;
+            }
+
+            @include mobile {
+                font-size: 1rem;
+            }
+
+            .colored-light {
+                color: $color04;
+            }
+
+            .colored {
+                color: $color05;
+            }
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+
+            .post-job-link {
+                color: $color12;
+                margin-right: 1.2rem;
+                font-size: 1rem;
+                font-weight: 300;
+                color: $color01;
+
+                &:hover{
+                    cursor: pointer;
+                }
+                
+            }
+
+            .profile-bubble {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                margin: auto;
+                background: $color12;
+                color: $color01;
+                font-size: 1.2rem;
+                width: 2.5rem;
+                height: 2.5rem;
+
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+
+            .link {
+                text-decoration: none;
+                color: $color02;
+            }
+
+            .expand-btn {
+                .icon {
+                    width: .8rem;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+                @include mobile{
+                    margin-left: 4px;
+                }
+            }
+        }
+                .logout-tile {
+                    position: absolute;
+                    top: 105%;
+                    right: 3.8%;
+                    font-size: 1rem;
+                    background: white;
+                    padding: 0.8rem 2rem;
+                    border-radius: 0.4rem;
+                    color: $color02;
+                    z-index: 1;
+                    text-decoration: none;
+                    color: inherit;
+                    animation: 0.3s ease-out slideRightToLeft;
+
+                    .out-arrow{
+                        position: relative;
+
+                        &::before{
+                            border: solid transparent;
+                            content: " ";
+                            height: 0;
+                            width: 0;
+                            position: absolute;
+                            border-color: rgba(37, 45, 49, 0);
+                            border-bottom-color: white;
+                            border-width: 1rem;
+                            left: 100%;
+                            top: -200%;
+
+                            @include tablet{
+                                top: -210%;
+                            }
+                            @include mobile{
+                                top: -220%;
+                            }
+                        }
+                    }
+        
+                    @keyframes slideRightToLeft {
+                        0% {
+                            transform: translateX(-50%);
+                        }
+        
+                        100% {
+                            transform: translate(0);
+                        }
+                    }
+        
+                    &:hover {
+                        cursor: pointer;
+                    }
+        
+                    @include mobile {
+                        // left: 60%;
+                        font-size: 0.8rem;
+                    }
+        
+                    @include tablet {
+                        // left: 80%;
+                        font-size: 0.9rem;
+                    }
+                }
+    }
+}

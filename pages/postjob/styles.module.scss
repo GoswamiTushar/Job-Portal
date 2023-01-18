@@ -1,0 +1,14 @@
+@import '../../styles/index.scss';
+
+.post-job{
+    // position: relative;
+    padding: 1rem 9rem;
+
+    @include mobile {
+        padding: 1rem 3rem;
+    }
+
+    @include tablet {
+        padding: 1rem 5rem;
+    }
+}

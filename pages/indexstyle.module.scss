@@ -1,0 +1,21 @@
+@import '../styles/index.scss';
+
+.landing-page{
+    display: grid;
+    gap: 4rem;
+    padding: 3rem 10rem;
+    font-family: 'Arimo', sans-serif;
+
+    @include mobile{
+        padding: 2rem;
+        gap: 1rem;
+    }
+    @include tablet{
+        margin: 2rem 3rem;
+    }
+
+    @include l_tablet{
+        margin: 2rem 1rem;
+    }
+    
+}
