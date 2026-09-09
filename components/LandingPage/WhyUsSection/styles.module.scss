@@ -1,21 +1,60 @@
-@import '../../../styles//index.scss';
+@import '../../../styles/index.scss';
 
 .why-us {
-    margin-top: 3rem;
-    .heading {
-        color: $color02;
-        font-weight: 200;
-        h2 {
-            font-size: 1.1rem;
-            // font-size: 18px;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+    @include mobile {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .section-header {
+        text-align: center;
+        max-width: 680px;
+        margin: 0 auto 3rem;
+
+        .section-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--brand-primary);
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.025em;
+            color: var(--text-primary);
+            margin-bottom: 0.85rem;
+
+            @include tablet {
+                font-size: 1.85rem;
+            }
+
+            @include mobile {
+                font-size: 1.5rem;
+            }
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+
+            @include mobile {
+                font-size: 0.88rem;
+            }
         }
     }
 
-    .cards-section{
-        margin: 2rem 0;
-        display: flex;
-        gap: 2rem;
-        align-self: stretch;
-        flex-wrap: wrap;
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.75rem;
+        width: 100%;
     }
 }

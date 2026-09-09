@@ -1,30 +1,34 @@
-import { FC } from 'react'
-import Link from 'next/link'
-import styles from './NavButtonstyle.module.scss'
-import { useRouter } from 'next/router'
+import { FC } from 'react';
+import Link from 'next/link';
+import styles from './NavButtonstyle.module.scss';
+import { useRouter } from 'next/router';
 
 interface NavBtnProps {
-    toShow: boolean,
+    toShow: boolean;
 }
 
-const index: FC<NavBtnProps> = ({ toShow }) => {
-    const router = useRouter()
-    const currentRoute = router.pathname
+const NavbarButton: FC<NavBtnProps> = ({ toShow }) => {
+    const router = useRouter();
+    const currentRoute = router.pathname;
+
+    if (!toShow) return null;
+
     return (
-        <button className={styles['navbar-btn']} style={toShow ? { display: 'block' } : { display: 'none' }}>
-            <span className={styles["nav-link"]}>
-                <Link href="/login">
-                    <a className={currentRoute === "/login" ? styles["active"] : ''}>Login</a>
-                </Link>
-            </span>
-            /
-            <span className={styles["nav-link"]}>
-                <Link href="/signup">
-                    <a className={currentRoute === "/signup" ? styles["active"] : ''}>Signup</a>
-                </Link>
-            </span>
-        </button>
-    )
-}
+        <div className={styles['auth-buttons-group']}>
+            <Link
+                href="/login"
+                className={`${styles['btn']} ${styles['login-btn']} ${currentRoute === '/login' ? styles['active'] : ''}`}
+            >
+                Log In
+            </Link>
+            <Link
+                href="/signup"
+                className={`${styles['btn']} ${styles['signup-btn']} ${currentRoute === '/signup' ? styles['active'] : ''}`}
+            >
+                Sign Up
+            </Link>
+        </div>
+    );
+};
 
-export default index
+export default NavbarButton;

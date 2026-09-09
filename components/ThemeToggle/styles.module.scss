@@ -1,0 +1,79 @@
+@import '../../styles/index.scss';
+
+.theme-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.85rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--card-shadow);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+        background: var(--bg-surface-elevated);
+        border-color: var(--border-hover);
+        color: var(--text-primary);
+        box-shadow: 0 0 15px var(--brand-glow);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    .icon-wrapper {
+        position: relative;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: absolute;
+        }
+
+        &.dark {
+            .sun-icon {
+                opacity: 1;
+                transform: rotate(0) scale(1);
+                color: #f59e0b; /* Golden sun */
+            }
+
+            .moon-icon {
+                opacity: 0;
+                transform: rotate(-90deg) scale(0.4);
+            }
+        }
+
+        &.light {
+            .sun-icon {
+                opacity: 0;
+                transform: rotate(90deg) scale(0.4);
+            }
+
+            .moon-icon {
+                opacity: 1;
+                transform: rotate(0) scale(1);
+                color: #6366f1; /* Indigo moon */
+            }
+        }
+    }
+
+    .label {
+        letter-spacing: 0.02em;
+
+        @include mobile {
+            display: none;
+        }
+    }
+}

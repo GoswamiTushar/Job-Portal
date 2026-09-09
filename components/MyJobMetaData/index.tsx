@@ -3,15 +3,15 @@ import { useRouter } from 'next/router';
 import { files } from './_static'
 
 const defaultMeta = {
-    title: 'MyJob Portal',
-    site_name: 'MyJob Squareboat Website',
+    title: 'RoleCrest — Next-Gen Career & Talent Platform',
+    site_name: 'RoleCrest',
     description:
-        'JobPortal Dummy Project for initial practice. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, mollitia.',
-    url: process.env.NEXT_PUBLIC_WEBSITE_URL,
-    image: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/images/landingPage/lpimage.png`,
+        'Connect with top tech talent and discover verified opportunities with transparent compensation, direct recruiter pipelines, and fast-track hiring.',
+    url: process.env.NEXT_PUBLIC_WEBSITE_URL || 'http://localhost:3001',
+    image: '/images/rolecrest-logo.png',
     type: 'website',
     robots: 'follow, index',
-    favicon: process.env.NEXT_PUBLIC_WEBSITE_URL + files.favicon
+    favicon: '/favicon.svg'
 };
 
 type SeoProps = {
@@ -45,9 +45,9 @@ export default function Seo(props: SeoProps) {
             <meta property='og:image:type' content='images/png' />
             <meta property='og:image:width' content='1200' />
             <meta property='og:image:height' content='630' />
-            <meta http-equiv='cache-control' content='no-cache' />
-            <meta http-equiv='expires' content='0' />
-            <meta http-equiv='pragma' content='no-cache' />
+            <meta httpEquiv='cache-control' content='no-cache' />
+            <meta httpEquiv='expires' content='0' />
+            <meta httpEquiv='pragma' content='no-cache' />
             {/* Twitter */}
             <meta name='twitter:card' content='summary_large_image' />
             {/* <meta name="twitter:site" content="@th_clarence" /> */}

@@ -1,18 +1,23 @@
-import Navbar from '../Navbar'
-import DarkBG from '../DarkBG'
-import styles from './LayoutStyle.module.scss'
-
+import React, { FC, ReactNode } from 'react';
+import Navbar from '../Navbar';
+import Ambient3DBackground from '../Ambient3DBackground';
+import styles from './LayoutStyle.module.scss';
 
 type Props = {
-    children?: React.ReactNode;
-    size?: string,
+    children?: ReactNode;
+    size?: string;
 };
-const Layout = ({ children, size = 'big' }: Props) => {
+
+const Layout: FC<Props> = ({ children }) => {
     return (
-        <div className={`${styles['layout-container']}}`}>
+        <div className={styles['layout-container']}>
+            <Ambient3DBackground />
             <Navbar />
-            {children}
+            <main className={styles['main-content']}>
+                {children}
+            </main>
         </div>
-    )
-}
-export default Layout
+    );
+};
+
+export default Layout;

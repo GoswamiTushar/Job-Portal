@@ -24,10 +24,8 @@ const NoData: FC = ({ isLoading }: any) => {
                         router.pathname === '/appliedjobs' ? "Your applied jobs will show here" : ""
                     }
                 </p>
-                <Link href="/dashboard">
-                    <a className={styles['get-started-btn']}>
-                        See all jobs
-                    </a>
+                <Link href="/dashboard" className={styles['get-started-btn']}>
+                    See all jobs
                 </Link>
             </div>
         </div>

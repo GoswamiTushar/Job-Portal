@@ -1,27 +1,33 @@
-import { FC } from 'react'
-import { companyLogos } from './logos'
-import styles from './styles.module.scss'
+import { FC } from 'react';
+import { companyLogos } from './logos';
+import styles from './styles.module.scss';
 
 type ImageObj = {
-    company: string,
-    image: string,
-}
+    company: string;
+    image: string;
+};
 
-const index: FC = () => {
+// Quadruple the logos array so the track seamlessly scrolls infinitely across all screen widths
+const marqueeLogos = [...companyLogos, ...companyLogos, ...companyLogos, ...companyLogos];
+
+const ClientelSection: FC = () => {
     return (
-        <div className={styles["clients"]} >
-            <div className={styles["heading"]}>
-                <h2>Companies Who Trust Us</h2>
+        <section className={styles['clients']}>
+            <div className={styles['heading']}>
+                <span className={styles['tag']}>INDUSTRY ECOSYSTEM</span>
+                <h2>Trusted by teams building the future</h2>
             </div>
-            <div className={styles["company-logos"]}>
-                {
-                    companyLogos.map((obj: ImageObj) => {
-                        return <img key={obj.company} src={obj.image} alt={obj.company} />
-                    })
-                }
+            <div className={styles['marquee-wrapper']}>
+                <div className={styles['marquee-track']}>
+                    {marqueeLogos.map((obj: ImageObj, index: number) => (
+                        <div key={`${obj.company}-${index}`} className={styles['logo-card']}>
+                            <img src={obj.image} alt={obj.company} />
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
-    )
-}
+        </section>
+    );
+};
 
-export default index
+export default ClientelSection;

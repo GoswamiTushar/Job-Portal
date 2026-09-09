@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import MyJobMetaData from '../../components/MyJobMetaData'
-import { getAppliedJobs } from '../../utils/apis'
+import { getAppliedJobs, getCurrentUser } from '../../utils/apis'
 import BreadCrumb from '../../components/Breadcrumb'
 import DashboardContainer from '../../components/DashboardContainer'
 import Paginate from '../../components/Paginate'
@@ -18,22 +18,36 @@ const index: FC = () => {
 
     useEffect(() => {
         setLoading(true)
-        if (
-            typeof window !== 'undefined' && localStorage.getItem("sb-userRole") === "0"
-        ) {
-            router.push("/dashboard")
-        }
-        try {
-            const getData = async () => {
-                const res = await getAppliedJobs({ token: localStorage.getItem("squareboatJobPortalToken") as string })
-                setResult(res)
-                setItemToShow(res?.data)
-                setTotal(res?.data?.length)
-                setLoading(false)
+        const verifyCandidate = async () => {
+            const hasLocalToken = typeof window !== 'undefined' && localStorage.getItem("squareboatJobPortalToken");
+            const role = typeof window !== 'undefined' ? localStorage.getItem("sb-userRole") : null;
+            if (!hasLocalToken) {
+                const userRes = await getCurrentUser();
+                if (!userRes?.success || !userRes?.data) {
+                    router.push("/");
+                    return;
+                }
+                localStorage.setItem("squareboatJobPortalToken", "cookie_authenticated");
+                localStorage.setItem("sb-userRole", String(userRes.data.userRole));
+                if (userRes.data.userRole === 0) {
+                    router.push("/postedjobs");
+                    return;
+                }
+            } else if (role === "0") {
+                router.push("/postedjobs");
+                return;
             }
-            getData()
-        } finally {
-        }
+
+            try {
+                const res = await getAppliedJobs({ token: localStorage.getItem("squareboatJobPortalToken") as string });
+                setResult(res);
+                setItemToShow(res?.data);
+                setTotal(res?.data?.length);
+            } finally {
+                setLoading(false);
+            }
+        };
+        verifyCandidate();
     }, [])
 
     return (

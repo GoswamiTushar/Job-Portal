@@ -1,35 +1,55 @@
 @import '../../styles/index.scss';
 
-.navbar-btn{
-    background: $color06;
-    color: $color04;
-    border: 1px solid $color05;
-    border-radius: .4rem;
-    padding: .8rem 1.8rem;
-    font-size: .8rem;
+.auth-buttons-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
 
-    &:hover{
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.45rem 1.1rem;
+        border-radius: 999px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         cursor: pointer;
+
+        @include mobile {
+            padding: 0.4rem 0.85rem;
+            font-size: 0.72rem;
+        }
     }
 
-    @include mobile{
-        padding: .6rem 1.4rem;
-        font-size: .6rem;
+    .login-btn {
+        background: transparent;
+        color: var(--text-primary);
+        border: 1px solid var(--border-subtle);
+
+        &:hover, &.active {
+            background: var(--bg-surface-elevated);
+            border-color: var(--border-hover);
+            color: var(--brand-primary);
+            box-shadow: 0 0 12px var(--brand-glow);
+        }
     }
-    .nav-link{
-        padding: 0 .2rem;
 
-        &:hover{
-            text-decoration: underline;
+    .signup-btn {
+        background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+        color: #ffffff;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 10px var(--brand-glow);
+
+        &:hover, &.active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 18px var(--brand-glow);
+            filter: brightness(1.08);
         }
 
-        a{
-            color: $color04;
-            text-decoration: none;
-        }
-        
-        .active {
-            text-decoration: underline;
+        &:active {
+            transform: translateY(0);
         }
     }
 }

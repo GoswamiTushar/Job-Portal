@@ -1,27 +1,21 @@
 @import '../../styles/index.scss';
 
-.dashboard{
-    max-width: 1300px;
+.dashboard {
+    max-width: 1280px;
     margin-right: auto;
     margin-left: auto;
-    padding: 1rem 9rem;
+    padding: 2rem 1.5rem;
 
-    @include mobile{
-        padding: 1rem 2rem;
-    }
-
-    @include tablet{
-        padding: 1rem 5rem;
+    @include mobile {
+        padding: 1.5rem 1rem;
     }
 
     .page-title {
-        padding: 1rem 0;
-        font-size: 1.5rem;
-        color: $color04;
-
-        @include tablet {
-            font-size: 1.8rem;
-        }
+        padding: 0.5rem 0 1rem;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        color: var(--text-primary);
 
         @include mobile {
             font-size: 1.5rem;
@@ -31,31 +25,33 @@
 
 .no-data {
     position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .wrapper {
-        position: absolute;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
         gap: 1rem;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-        @include mobile {
-                top: 75;
-                transform: translate(-50%, -25%);
-            }
+        text-align: center;
+        padding: 2.5rem;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: 1.25rem;
+        box-shadow: var(--card-shadow);
 
         .icon {
-            width: 5rem;
+            width: 4.5rem;
+            opacity: 0.7;
         }
 
         .data-status {
-            color: #818895;
-            font-size: 1.2rem;
-            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            font-weight: 600;
         }
     }
 }

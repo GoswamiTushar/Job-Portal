@@ -8,6 +8,7 @@ import { Router, useRouter } from 'next/router';
 import Link from 'next/link'
 import Loader from '../../Loader'
 import { authContext } from '../../../pages/_app'
+import SocialAuth from '../../SocialAuth'
 import styles from './styles.module.scss'
 
 const SignInSchema = Yup.object().shape({
@@ -62,6 +63,7 @@ const index: FC = () => {
                     Login
                 </h1>
             </header>
+            <SocialAuth mode="login" />
             <Formik
                 initialValues={initialValues}
                 validationSchema={SignInSchema}
@@ -113,10 +115,8 @@ const index: FC = () => {
                             />
                             <div className={styles["wrapper"]}>
                                 <div className={styles["forgot-password"]}>
-                                    <Link href="/forgot-password">
-                                        <a className={styles["link"]}>
-                                            Forgot your Password?
-                                        </a>
+                                    <Link href="/forgot-password" className={styles["link"]}>
+                                        Forgot your Password?
                                     </Link>
                                 </div>
                                 <GenericInput
@@ -154,7 +154,7 @@ const index: FC = () => {
                 }}
             </Formik>
             <div className={styles["create-account"]}>
-                New to MyJobs?
+                New to RoleCrest?
                 <Link className={styles["signup-link"]} href="/signup">
                     Create an account
                 </Link>

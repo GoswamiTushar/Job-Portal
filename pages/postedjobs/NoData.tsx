@@ -34,10 +34,8 @@ const NoData: FC = () => {
                 </p>
                 {
                     router.pathname === '/postedjobs' ?
-                        <Link href="/postjob">
-                            <a className={styles['get-started-btn']}>
-                                Post Job
-                            </a>
+                        <Link href="/postjob" className={styles['get-started-btn']}>
+                            Post Job
                         </Link>
                         :
                         void 0

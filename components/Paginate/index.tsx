@@ -1,4 +1,4 @@
-import { FC, JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useEffect, useState } from 'react'
+import { FC, ReactNode, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate';
 import { icons } from './_static'
 import styles from './styles.module.scss'
@@ -27,7 +27,7 @@ function Items({ currentItems }: Items) {
     return (
         <>
             {currentItems &&
-                currentItems.map((item: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined, index: number) => (
+                currentItems.map((item: ReactNode, index: number) => (
                     <div key={index.toString()}>
                         <h3>Item #{item}</h3>
                     </div>

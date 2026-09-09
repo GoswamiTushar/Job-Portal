@@ -1,52 +1,50 @@
 @import '../../styles/index.scss';
 
-.not-selected{
-    background-color: $color10;
-    border: 1px solid $color09;
-    color: $color03;
+.option-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-bottom: 0.75rem;
+
+    @include mobile {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.75rem;
+    }
+
+    .icon-container {
+        display: flex;
+        align-items: center;
+
+        .icon {
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+    }
 }
 
 .selected {
-    color: $color04;
-    background-color: $color05;
-    border: 1px solid $color05;
+    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+    color: #ffffff;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 14px var(--brand-glow);
 }
 
-.option-btn{
-    margin-right: .3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5rem;
-    margin-bottom: 1rem;
-    border-radius: .2rem;
-    width: 7rem;
-    height: 2.5rem;
+.not-selected {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
 
-    &:hover{
-        cursor: pointer;
-    }
-
-    @include mobile{
-        width: 5rem;
-        height: 1.8rem;
-    }
-
-    .icon-container{
-        .icon{
-            width: 1rem;
-
-            @include mobile{
-                width: .8rem;
-            }
-        }
-    }
-    .text {
-        font-weight: 400;
-        font-size: .7rem;
-
-        @include mobile{
-            font-size: .5rem;
-        }
+    &:hover {
+        background: var(--bg-surface-elevated);
+        border-color: var(--border-hover);
+        color: var(--text-primary);
     }
 }

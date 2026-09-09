@@ -1,33 +1,178 @@
 @import '../../../styles/index.scss';
 
-.clients{
-    display: grid;
-    gap: 1rem;
+.clients {
+    margin-top: 2.5rem;
+    margin-bottom: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+
+    @include mobile {
+        margin-top: 1.5rem;
+        margin-bottom: 3.5rem;
+    }
 
     .heading {
-        color: $color02;
-        font-weight: 200;
+        text-align: center;
+        margin-bottom: 2.5rem;
+        padding: 0 1rem;
 
-        h2{
-            font-size: 1.1rem;
-            // font-size: 18px;
+        .tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--brand-primary);
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+
+            @include mobile {
+                font-size: 1.25rem;
+            }
         }
     }
 
-    .company-logos{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        gap: 2rem;
-        object-fit: cover;
+    .marquee-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding: 1.25rem 0;
 
-        img{
-            @include mobile{
-                width: 21vw;
-                height: 2rem;
+        // Gradient fade out at the left and right boundaries
+        mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%
+        );
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%
+        );
+
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            gap: 1.5rem;
+            animation: marquee 35s linear infinite;
+            will-change: transform;
+
+            &:hover {
+                animation-play-state: paused;
+            }
+
+            @include mobile {
+                gap: 1rem;
+                animation-duration: 25s;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                animation: none;
+                overflow-x: auto;
             }
         }
+    }
+
+    .logo-card {
+        flex-shrink: 0;
+        padding: 0.7rem 1.6rem;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer;
+        user-select: none;
+
+        img {
+            height: 24px;
+            width: auto;
+            max-width: 125px;
+            object-fit: contain;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        @include mobile {
+            padding: 0.55rem 1.2rem;
+            height: 42px;
+
+            img {
+                height: 19px;
+                max-width: 95px;
+            }
+        }
+    }
+}
+
+// THEME-SPECIFIC TREATMENTS
+// Light Mode: Clean white pill with subtle border and shadow
+:global([data-theme='light']) .logo-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    img {
+        opacity: 0.85;
+    }
+
+    &:hover {
+        transform: translateY(-3px) scale(1.03);
+        border-color: rgba(67, 97, 238, 0.35);
+        box-shadow: 0 8px 20px rgba(67, 97, 238, 0.12);
+
+        img {
+            opacity: 1;
+            transform: scale(1.04);
+        }
+    }
+}
+
+// Dark Mode: High-contrast soft white/frosted pill so light-theme logos
+// have 100% natural contrast, vibrant brand colors, and crisp black typography
+:global([data-theme='dark']) .logo-card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 0 10px rgba(255, 255, 255, 0.12);
+
+    img {
+        opacity: 0.92;
+    }
+
+    &:hover {
+        background: #ffffff;
+        transform: translateY(-4px) scale(1.04);
+        border-color: #00f2fe;
+        box-shadow: 0 8px 25px rgba(0, 242, 254, 0.35), 0 0 15px rgba(0, 242, 254, 0.2);
+
+        img {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+    }
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        // Since marqueeLogos array is quadrupled, translating by -50% loops seamlessly forever
+        transform: translateX(-50%);
     }
 }

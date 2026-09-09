@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router'
 import { FC, ReactElement, ReactNode, useEffect, useRef, useState } from 'react'
-import { getPostedJobs } from '../../utils/apis'
+import { getPostedJobs, getOneJobDetails, getCurrentUser } from '../../utils/apis'
 import BreadCrumb from '../../components/Breadcrumb'
 import DashboardContainer from '../../components/DashboardContainer'
 import Paginate from '../../components/Paginate'
 import Modal from '../../components/Modal'
-import { getOneJobDetails } from '../../utils/apis'
 import MyJobMetaData from '../../components/MyJobMetaData'
 import NoData, { NoDataModal } from './NoData'
 import Loader from '../../components/Loader'
@@ -89,12 +88,24 @@ const PostedJob: FC = () => {
     }, [router.query.page])
 
     useEffect(() => {
+        const verifyRecruiter = async () => {
+            const hasLocalToken = typeof window !== 'undefined' && localStorage.getItem("squareboatJobPortalToken");
+            const role = typeof window !== 'undefined' ? localStorage.getItem("sb-userRole") : null;
+            if (!hasLocalToken || role !== "0") {
+                const userRes = await getCurrentUser();
+                if (!userRes?.success || !userRes?.data || userRes.data.userRole !== 0) {
+                    router.push("/");
+                    return;
+                }
+                localStorage.setItem("squareboatJobPortalToken", "cookie_authenticated");
+                localStorage.setItem("sb-userRole", "0");
+            }
+        };
+        verifyRecruiter();
+    }, []);
+
+    useEffect(() => {
         setModalLoading(true)
-        if (
-            typeof window !== 'undefined' && localStorage.getItem("sb-userRole") !== "0"
-        ) {
-            router.push("/")
-        }
         if (modalIsOpen) {
             try {
                 if (applyClicked.current) {

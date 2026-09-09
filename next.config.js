@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  swcMinify: true,
-  reactStrictMode: false
+  reactStrictMode: true,
+  sassOptions: {
+    silenceDeprecations: ['legacy-js-api', 'import'],
+  },
 }
 
 module.exports = nextConfig

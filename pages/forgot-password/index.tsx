@@ -8,8 +8,8 @@ const index = () => {
     return (
         <section className={styles['forgot-password']}>
             <MyJobMetaData
-                title='Forgot Password MyJobs'
-                description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet assumenda aliquid veritatis, eligendi nostrum est nisi beatae deleniti earum exercitationem.'
+                title='Forgot Password | RoleCrest'
+                description='Reset your RoleCrest account password securely.'
             />
             <ForgotPasswordCard />
 

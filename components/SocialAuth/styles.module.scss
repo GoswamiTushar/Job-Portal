@@ -1,0 +1,115 @@
+@import '../../styles/index.scss';
+
+.social-auth-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+
+    .preferred-wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        .preferred-badge {
+            align-self: flex-start;
+            margin-bottom: 0.35rem;
+            display: inline-flex;
+            align-items: center;
+            background: rgba(2, 132, 199, 0.12);
+            border: 1px solid rgba(2, 132, 199, 0.3);
+            color: var(--brand-primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+    }
+
+    .social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border-radius: 0.65rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        font-family: inherit;
+
+        .icon {
+            flex-shrink: 0;
+        }
+
+        &.linkedin-btn {
+            background-color: #0a66c2;
+            color: #ffffff;
+            border: 1px solid #0a66c2;
+            box-shadow: 0 2px 8px rgba(10, 102, 194, 0.25);
+
+            &:hover {
+                background-color: #084e96;
+                border-color: #084e96;
+                box-shadow: 0 4px 14px rgba(10, 102, 194, 0.35);
+                transform: translateY(-1px);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+
+        &.google-btn {
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--card-shadow);
+
+            &:hover {
+                background-color: var(--bg-surface-elevated);
+                border-color: var(--border-hover);
+                box-shadow: var(--card-shadow-hover);
+                transform: translateY(-1px);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+
+        @include mobile {
+            font-size: 0.75rem;
+            padding: 0.65rem 0.75rem;
+        }
+    }
+
+    .divider {
+        display: flex;
+        align-items: center;
+        margin: 0.5rem 0;
+        gap: 0.75rem;
+
+        .line {
+            flex: 1;
+            height: 1px;
+            background-color: var(--border-subtle);
+        }
+
+        .text {
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+
+            @include mobile {
+                font-size: 0.62rem;
+            }
+        }
+    }
+}

@@ -1,63 +1,80 @@
 @import '../../styles/index.scss';
 
-.form-row{
-    margin-bottom: 1rem;
+.form-row {
+    margin-bottom: 1.25rem;
     flex: 1;
     position: relative;
 
     .label {
         display: block;
         width: 100%;
-        font-size: .7rem;
-        color: $color03;
-        margin-bottom: .5rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        margin-bottom: 0.4rem;
+        letter-spacing: 0.01em;
 
-        @include mobile{
-            font-size: .6rem;
+        @include mobile {
+            font-size: 0.75rem;
         }
     }
 
     .input-field {
         display: block;
         width: 100%;
-        padding: .7rem;
-        border-radius: 0.3rem;
+        padding: 0.75rem 1rem;
+        border-radius: 0.6rem;
         outline: none;
-        background: $color10;
-        font-size: .7rem;
-    
+        background: var(--bg-input);
+        color: var(--text-primary);
+        font-size: 0.88rem;
+        font-family: inherit;
+        border: 1px solid var(--border-subtle);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+        &::placeholder {
+            color: var(--text-muted);
+        }
+
         &:focus {
             outline: none;
-            border: 1px solid $color05;
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 0 3px var(--brand-glow);
         }
 
-        @include mobile{
-            font-size: .6rem;
+        @include mobile {
+            font-size: 0.82rem;
+            padding: 0.65rem 0.85rem;
         }
     }
 
-    .input-field-normal{
+    .input-field-normal {
         @extend .input-field;
-        border: 1px solid $color09;
+        border: 1px solid var(--border-subtle);
     }
 
-    .input-field-error{
+    .input-field-error {
         @extend .input-field;
-        border: 1px solid $color11;
+        border: 1px solid #ef4444;
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+        }
     }
+
     .error {
         position: absolute;
-        bottom: -15px;
+        bottom: -16px;
         right: 0;
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        font-weight: 500;
-        color: #ff0000;
-        font-size: .6rem;
+        font-weight: 600;
+        color: #ef4444;
+        font-size: 0.7rem;
 
         @include mobile {
-            font-size: .5rem;
+            font-size: 0.62rem;
         }
     }
 }

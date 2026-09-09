@@ -1,5 +1,4 @@
-import { HtmlProps } from 'next/dist/shared/lib/html-context'
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC, HTMLProps, ReactNode, useEffect, useState } from 'react'
+import React, { FC, useState } from 'react'
 import styles from './styles.module.scss'
 
 interface Text {

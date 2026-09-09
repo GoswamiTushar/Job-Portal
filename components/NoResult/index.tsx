@@ -17,7 +17,7 @@ const index: FC = () => {
                                 Your applied jobs will show here
                             </p>
                             <Link
-                                style={{ textDecoration: "none", color: "none" }} href="/dashboard">
+                                style={{ textDecoration: "none", color: "inherit" }} href="/dashboard">
                                 <GenericButton text="See all job" />
                             </Link>
                         </>
@@ -29,7 +29,7 @@ const index: FC = () => {
                                     Your posted jobs will show here
                                 </p>
                                 <Link
-                                    style={{ textDecoration: "none", color: "none" }} href="/">
+                                    style={{ textDecoration: "none", color: "inherit" }} href="/">
                                     <GenericButton text="Post a job" />
                                 </Link>
                             </>

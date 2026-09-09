@@ -1,76 +1,54 @@
-import { useRouter } from 'next/router'
-import { FC, Key, useEffect, useState, Fragment } from 'react'
-import DashboardItem from './DashboardItem'
-import styles from './styles.module.scss'
+import { FC, Key, Fragment } from 'react';
+import DashboardItem from './DashboardItem';
+import styles from './styles.module.scss';
 
 interface Result {
-    successStatus: boolean,
-    message: string,
-    itemsToShow?: any,
-    isModalOpen?: boolean,
-    setModalOpen?: any,
-    setClickedJobID?: any,
-    applyClicked?: any
+    successStatus: boolean;
+    message?: string;
+    itemsToShow?: any[];
+    isModalOpen?: boolean;
+    setModalOpen?: any;
+    setClickedJobID?: any;
+    applyClicked?: any;
 }
 
 type Obj = {
-    id: Key | null | undefined,
-    title: string,
-    description: string,
-    location: string,
-}
+    id: Key | null | undefined;
+    title: string;
+    description: string;
+    location: string;
+};
 
-const index: FC<Result> = ({
+const DashboardContainer: FC<Result> = ({
     successStatus,
-    message,
     itemsToShow,
-    isModalOpen,
     setModalOpen,
     setClickedJobID,
-    applyClicked
+    applyClicked,
 }) => {
-    const router = useRouter()
-
-    // useEffect(() => {
-    //     window.addEventListener("load", () => {
-    //         setLoading(true)
-    //     });
-    //     return () => {
-    //         setLoading(false)
-    //         window.removeEventListener("load", () => setLoading(false))
-    //     }
-    // }, [])
+    if (!successStatus || !itemsToShow || itemsToShow.length === 0) {
+        return null;
+    }
 
     return (
         <div className={styles['dashboard-container']} suppressHydrationWarning>
-            {
-                successStatus === true && itemsToShow?.length > 0
-                    ?
-                    itemsToShow?.map((obj: Obj, index: number) => {
-                        return (
-                            <Fragment key={index.toString()}>
-                                <DashboardItem
-                                    // key={obj.id?.toString()}
-                                    jobTitle={obj.title}
-                                    jobDesc={obj.description}
-                                    jobLocation={obj.location}
-                                    jobID={obj.id}
-                                    setClickedJobID={setClickedJobID}
-                                    allApplications={undefined}
-                                    setAllApplications={undefined}
-                                    setModalOpen={setModalOpen}
-                                    applyClicked={applyClicked}
-                                />
-                            </Fragment>
-                        )
-                    })
-                    :
-                    // console.log(message)
-                    alert("Some error occured")
-            }
-
+            {itemsToShow.map((obj: Obj, index: number) => (
+                <Fragment key={obj.id ? obj.id.toString() : index.toString()}>
+                    <DashboardItem
+                        jobTitle={obj.title}
+                        jobDesc={obj.description}
+                        jobLocation={obj.location}
+                        jobID={obj.id}
+                        setClickedJobID={setClickedJobID}
+                        allApplications={undefined}
+                        setAllApplications={undefined}
+                        setModalOpen={setModalOpen}
+                        applyClicked={applyClicked}
+                    />
+                </Fragment>
+            ))}
         </div>
-    )
-}
+    );
+};
 
-export default index
+export default DashboardContainer;

@@ -1,0 +1,332 @@
+@import '../../../styles/index.scss';
+
+.hero-3d-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    perspective: 1200px;
+    padding: 2rem 1rem;
+    user-select: none;
+
+    @include mobile {
+        max-width: 95vw;
+        padding: 1rem 0;
+    }
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out;
+}
+
+.floating-idle {
+    animation: sceneIdle 8s ease-in-out infinite alternate;
+}
+
+@keyframes sceneIdle {
+    0% {
+        transform: perspective(1000px) rotateX(2deg) rotateY(-4deg) translateY(0px);
+    }
+    50% {
+        transform: perspective(1000px) rotateX(-3deg) rotateY(3deg) translateY(-10px);
+    }
+    100% {
+        transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(0px);
+    }
+}
+
+.backdrop-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle, var(--brand-glow) 0%, transparent 70%);
+    border-radius: 2rem;
+    filter: blur(40px);
+    transform: translateZ(-30px);
+    opacity: 0.8;
+}
+
+.main-card {
+    position: relative;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    box-shadow: var(--card-shadow), 0 30px 60px -15px rgba(0, 0, 0, 0.35);
+    transform: translateZ(25px);
+    transform-style: preserve-3d;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        border-color: var(--border-hover);
+        box-shadow: var(--card-shadow-hover), 0 0 30px var(--brand-glow);
+    }
+
+    @include mobile {
+        padding: 1.25rem;
+    }
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+
+    .company-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 0.75rem;
+        background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        box-shadow: 0 4px 15px rgba(2, 132, 199, 0.35);
+        transform: translateZ(35px);
+    }
+
+    .job-meta {
+        transform: translateZ(25px);
+
+        .job-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin-bottom: 0.2rem;
+        }
+
+        .company-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            .company-name {
+                font-size: 0.85rem;
+                font-weight: 500;
+                color: var(--text-secondary);
+            }
+
+            .verified-badge {
+                font-size: 0.65rem;
+                font-weight: 700;
+                padding: 0.15rem 0.45rem;
+                background: rgba(16, 185, 129, 0.15);
+                color: #10b981;
+                border: 1px solid rgba(16, 185, 129, 0.3);
+                border-radius: 999px;
+            }
+        }
+    }
+}
+
+.card-body {
+    transform: translateZ(20px);
+
+    .job-summary {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+    }
+
+    .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 0.65rem;
+            background: var(--pill-bg);
+            color: var(--pill-text);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-subtle);
+        }
+    }
+
+    .skill-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 1.25rem;
+
+        .skill-pill {
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 0.2rem 0.55rem;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--brand-primary);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 999px;
+        }
+    }
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    transform: translateZ(30px);
+
+    .applicant-count {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.78rem;
+        color: var(--text-muted);
+    }
+
+    .demo-apply-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1.1rem;
+        background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+        color: #ffffff;
+        font-size: 0.8rem;
+        font-weight: 700;
+        border-radius: 0.6rem;
+        box-shadow: 0 4px 14px var(--brand-glow);
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+}
+
+/* Floating Badges with high 3D parallax depth */
+.floating-chip {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.75rem;
+    padding: 0.6rem 0.85rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 0 15px var(--brand-glow);
+    z-index: 10;
+    transition: transform 0.3s ease;
+
+    .chip-content {
+        display: flex;
+        flex-direction: column;
+
+        .chip-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .chip-sub {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+    }
+}
+
+.chip-top-right {
+    top: -15px;
+    right: -25px;
+    transform: translateZ(75px);
+    animation: floatChip1 5s ease-in-out infinite alternate;
+
+    @include mobile {
+        right: 0;
+        top: -20px;
+    }
+
+    .chip-icon-verified {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: rgba(16, 185, 129, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulseGreen 2s infinite;
+        }
+    }
+}
+
+.chip-bottom-left {
+    bottom: -20px;
+    left: -25px;
+    transform: translateZ(85px);
+    animation: floatChip2 6s ease-in-out infinite alternate;
+
+    @include mobile {
+        left: 0;
+        bottom: -20px;
+    }
+
+    .linkedin-badge-icon {
+        width: 26px;
+        height: 26px;
+        border-radius: 6px;
+        background: rgba(10, 102, 194, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.chip-bottom-right {
+    bottom: 55px;
+    right: -30px;
+    transform: translateZ(60px);
+    animation: floatChip3 5.5s ease-in-out infinite alternate;
+
+    @include mobile {
+        display: none;
+    }
+
+    .bolt-icon {
+        font-size: 1.1rem;
+    }
+}
+
+@keyframes pulseGreen {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.6;
+    }
+}
+
+@keyframes floatChip1 {
+    0% { transform: translate3d(0, 0, 75px); }
+    100% { transform: translate3d(0, -8px, 75px); }
+}
+
+@keyframes floatChip2 {
+    0% { transform: translate3d(0, 0, 85px); }
+    100% { transform: translate3d(0, 8px, 85px); }
+}
+
+@keyframes floatChip3 {
+    0% { transform: translate3d(0, 0, 60px); }
+    100% { transform: translate3d(0, -6px, 60px); }
+}

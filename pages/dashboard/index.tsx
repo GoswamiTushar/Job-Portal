@@ -2,12 +2,11 @@ import { useRouter } from 'next/router'
 import { FC, useEffect, useState, useContext, useRef } from 'react'
 import { authContext } from '../_app'
 import MyJobMetaData from '../../components/MyJobMetaData'
-import { getAvailableJobs } from '../../utils/apis'
+import { getAvailableJobs, applyJob, getCurrentUser } from '../../utils/apis'
 import BreadCrumb from '../../components/Breadcrumb'
 import DashboardContainer from '../../components/DashboardContainer'
 import Paginate from '../../components/Paginate'
 import NoData from './NoData'
-import { applyJob } from '../../utils/apis'
 import styles from './styles.module.scss'
 import Loader from '../../components/Loader'
 
@@ -25,10 +24,33 @@ const index: FC = () => {
 
     useEffect(() => {
         setHasMounted(true);
-        // console.log(userContext)
-        if (localStorage.getItem("squareboatJobPortalToken") === null) {
-            router.push("/")
-        }
+        const checkAuth = async () => {
+            const localToken = typeof window !== 'undefined' ? localStorage.getItem("squareboatJobPortalToken") : null;
+            if (!localToken) {
+                const userRes = await getCurrentUser();
+                if (!userRes?.success || !userRes?.data) {
+                    router.push("/");
+                    return;
+                }
+                localStorage.setItem("squareboatJobPortalToken", "cookie_authenticated");
+                localStorage.setItem("sb-userRole", String(userRes.data.userRole));
+                userContext.setLogin();
+                if (userRes.data.userRole === 0) {
+                    router.push("/postedjobs");
+                    return;
+                }
+            } else {
+                const role = localStorage.getItem("sb-userRole");
+                if (role === "0") {
+                    router.push("/postedjobs");
+                    return;
+                }
+            }
+        };
+        checkAuth();
+    }, []);
+
+    useEffect(() => {
         setLoading(true)
         if (applyClicked.current) {
             try {

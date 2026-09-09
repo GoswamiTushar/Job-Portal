@@ -7,8 +7,8 @@ const index: FC = () => {
     return (
         <section className={styles['reset-password']}>
             <MyJobMetaData
-                title='Reset Password MyJobs Job Portal Squareboat'
-                description='Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam quas dolore, blanditiis accusamus est et harum quasi quibusdam asperiores totam.'
+                title='Reset Password | RoleCrest'
+                description='Create a new secure password for your RoleCrest account.'
             />
             <ResetPasswordCard />
         </section>

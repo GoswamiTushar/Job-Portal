@@ -11,7 +11,7 @@ import Loader from '../../Loader'
 const ResetPasswordSchema = Yup.object().shape({
     password: Yup.string().required().min(6, "Password is too short - should be 6 chars minimum"),
     confirmPassword: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match').required("Please enter your password once again").min(6, "Password is too short - should be 6 chars minimum"),
+        .oneOf([Yup.ref('password')], 'Passwords must match').required("Please enter your password once again").min(6, "Password is too short - should be 6 chars minimum"),
 });
 
 const initialValues = {

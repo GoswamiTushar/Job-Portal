@@ -1,32 +1,36 @@
-import { FC } from 'react'
-import styles from './styles.module.scss'
+import { FC } from 'react';
+import styles from './styles.module.scss';
 
-interface JobCard {
-    text: string,
-    setModalOpen?: any,
-    setClickedJobID?: any,
-    jobID?: any,
-    applyClicked?: any
+interface JobCardBtnProps {
+    text: string;
+    setModalOpen?: (open: boolean) => void;
+    setClickedJobID?: (id: any) => void;
+    jobID?: any;
+    applyClicked?: { current: boolean };
 }
 
-const JobCardBtn: FC<JobCard> = ({ text, setModalOpen, setClickedJobID, jobID, applyClicked }) => {
+const JobCardBtn: FC<JobCardBtnProps> = ({ text, setModalOpen, setClickedJobID, jobID, applyClicked }) => {
+    const isApply = text.toLowerCase().includes('apply');
+
     return (
         <button
-            className={styles['job-card-btn']}
+            type="button"
+            className={`${styles['job-card-btn']} ${isApply ? styles['apply-btn'] : styles['view-btn']}`}
             onClick={() => {
-                setClickedJobID(jobID)
-                applyClicked.current = true
-                if (setModalOpen) {
-                    setModalOpen(true)
-                }
-            }
-            }
+                if (setClickedJobID) setClickedJobID(jobID);
+                if (applyClicked) applyClicked.current = true;
+                if (setModalOpen) setModalOpen(true);
+            }}
         >
-            <div className={styles["text"]}>
-                {text}
-            </div>
+            <span className={styles['btn-text']}>{text}</span>
+            {isApply && (
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                </svg>
+            )}
         </button>
-    )
-}
+    );
+};
 
-export default JobCardBtn
+export default JobCardBtn;
