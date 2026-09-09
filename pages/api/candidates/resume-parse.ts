@@ -34,11 +34,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return res.status(400).json({ message: 'No resume file uploaded. Please provide a "resume" file field.' });
         }
 
-        tempFilePath = file.filepath;
+        const uploadedFilePath = file.filepath;
+        tempFilePath = uploadedFilePath;
         const originalName = file.originalFilename || 'resume';
 
         // Execute parsing engine
-        const result = await parseResumeDocument(tempFilePath, originalName);
+        const result = await parseResumeDocument(uploadedFilePath, originalName);
 
         return res.status(200).json({
             success: true,
