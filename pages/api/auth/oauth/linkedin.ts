@@ -26,7 +26,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             return res.redirect('/profile?linkedin_error=config_missing');
         }
 
-        const state = `sync:${user.id}:${nonce}`;
+        const state = `sync_${user.id}_${nonce}`;
         const params = new URLSearchParams({
             response_type: 'code',
             client_id: clientId,
@@ -35,7 +35,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             scope: 'openid profile email',
         });
 
-        return res.redirect(`https://www.linkedin.com/oauth/v2/authorization?${params.toString()}`);
+        const authUrl = `https://www.linkedin.com/oauth/v2/authorization?${params.toString().replace(/\+/g, '%20')}`;
+        return res.redirect(authUrl);
     }
 
     // Standard OAuth Login / Register Flow
@@ -44,7 +45,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
 
     const role = (req.query.role === 'recruiter' ? 'recruiter' : 'candidate');
-    const state = `${role}:${nonce}`;
+    const state = `${role}_${nonce}`;
 
     const params = new URLSearchParams({
         response_type: 'code',
@@ -54,6 +55,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         scope: 'openid profile email',
     });
 
-    return res.redirect(`https://www.linkedin.com/oauth/v2/authorization?${params.toString()}`);
+    const authUrl = `https://www.linkedin.com/oauth/v2/authorization?${params.toString().replace(/\+/g, '%20')}`;
+    return res.redirect(authUrl);
 }
+
 

@@ -1158,7 +1158,7 @@ const ProfilePage: NextPage = () => {
                                 <svg viewBox="0 0 24 24" width="22" height="22" fill="#0A66C2">
                                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                                 </svg>
-                                Connect LinkedIn via OAuth 2.0
+                                Connect with LinkedIn
                             </h3>
                             <button
                                 type="button"
@@ -1170,32 +1170,8 @@ const ProfilePage: NextPage = () => {
                         </div>
 
                         <p className={styles['modal-desc']}>
-                            Authenticate with your official LinkedIn account to securely verify your identity, sync your profile picture, and link your LinkedIn presence to your candidate profile.
+                            Sync your official LinkedIn profile to auto-populate your verified photo, name, and public profile link.
                         </p>
-
-                        <div className={styles['oauth-benefits']}>
-                            <div className={styles['benefit-item']}>
-                                <span className={styles['benefit-icon']}>🔒</span>
-                                <div className={styles['benefit-text']}>
-                                    <h4>Official OpenID Connect 2.0</h4>
-                                    <p>Zero web scraping. 100% compliant with LinkedIn developer policy.</p>
-                                </div>
-                            </div>
-                            <div className={styles['benefit-item']}>
-                                <span className={styles['benefit-icon']}>⚡</span>
-                                <div className={styles['benefit-text']}>
-                                    <h4>Instant Verified Identity</h4>
-                                    <p>Imports verified avatar, name, and authenticates your LinkedIn presence.</p>
-                                </div>
-                            </div>
-                            <div className={styles['benefit-item']}>
-                                <span className={styles['benefit-icon']}>🛡️</span>
-                                <div className={styles['benefit-text']}>
-                                    <h4>Privacy First</h4>
-                                    <p>Only standard profile identity scopes (openid, profile, email) are requested.</p>
-                                </div>
-                            </div>
-                        </div>
 
                         <button
                             type="button"
@@ -1205,30 +1181,16 @@ const ProfilePage: NextPage = () => {
                             <svg viewBox="0 0 24 24">
                                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                             </svg>
-                            <span>Authorize & Sync with LinkedIn</span>
+                            <span>Authorize with LinkedIn</span>
                         </button>
 
-                        <div className={styles['oauth-config-alert']}>
-                            <strong>⚙️ LinkedIn App Developer Setup</strong>
-                            Add <code>LINKEDIN_CLIENT_ID</code> and <code>LINKEDIN_CLIENT_SECRET</code> to your <code>.env</code> file with redirect URI <code>http://localhost:3001/api/auth/oauth/linkedin/callback</code>.
-                        </div>
-
-                        <div className={styles['modal-footer']}>
-                            <button
-                                type="button"
-                                className={styles['cancel-btn']}
-                                onClick={handleSimulateLinkedInSync}
-                                disabled={isSimulatingSync}
-                                title="Use this in local development if live LinkedIn App credentials are not yet entered in .env"
-                            >
-                                {isSimulatingSync ? 'Simulating...' : '🧪 Simulate Sync (Dev Demo)'}
-                            </button>
+                        <div className={styles['modal-footer']} style={{ marginTop: '1.25rem' }}>
                             <button
                                 type="button"
                                 className={styles['cancel-btn']}
                                 onClick={() => setIsLinkedInModalOpen(false)}
                             >
-                                Close
+                                Cancel
                             </button>
                         </div>
                     </div>

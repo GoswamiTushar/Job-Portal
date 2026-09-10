@@ -8,14 +8,15 @@ import { signToken, setAuthCookie, getWebsiteUrl } from '../../../../../lib/auth
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { code, error, error_description } = req.query;
     const stateParam = typeof req.query.state === 'string' ? req.query.state : '';
-    const isSyncAction = stateParam.startsWith('sync:');
+    const isSyncAction = stateParam.startsWith('sync:') || stateParam.startsWith('sync_');
 
     if (error || !code || typeof code !== 'string') {
         console.error('LinkedIn OAuth error:', error, error_description);
+        const errDetail = encodeURIComponent(String(error_description || error || 'cancelled'));
         if (isSyncAction) {
-            return res.redirect('/profile?linkedin_error=cancelled');
+            return res.redirect(`/profile?linkedin_error=${errDetail}`);
         }
-        return res.redirect('/login?error=linkedin_cancelled');
+        return res.redirect(`/login?error=${errDetail}`);
     }
 
     const clientId = process.env.LINKEDIN_CLIENT_ID;
@@ -81,7 +82,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // 3. Handle Candidate Profile Sync Flow
         if (isSyncAction) {
-            const targetUserId = stateParam.split(':')[1];
+            const targetUserId = stateParam.split(/[:_]/)[1];
             let targetUser = targetUserId ? await User.findById(targetUserId) : null;
 
             if (!targetUser && email) {
